@@ -29,7 +29,7 @@ git clone https://github.com/flyingjoojak/codex-harness.git ~/codex-harness
 cd <과제 폴더>
 cp -rn ~/codex-harness/AGENTS.md ~/codex-harness/.agents ~/codex-harness/TASK.md ~/codex-harness/DECISIONS.md .
 printf 'AGENTS.md\n.agents/\n' >> .git/info/exclude
-codex
+codex --add-dir ~/codex-harness
 ```
 과제에 이미 AGENTS.md 가 있을 때(`codex --add-dir ~/codex-harness`), 첫 프롬프트, 시간 배분은 `RUN.md`.
 
