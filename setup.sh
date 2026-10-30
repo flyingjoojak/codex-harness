@@ -41,3 +41,39 @@ fi
 
 echo
 python3 "$KIT/scripts/preflight.py" || true
+
+cat <<'GUIDE'
+
+==================== 오늘 할 일 ====================
+[지금]
+ 1. codex --add-dir ~/codex-harness   (오류 나면 그냥 codex)
+ 2. /model 에서 6.1 Sol 선택
+ 3. 위에 나온 첫 프롬프트 붙여넣기 (붙여넣기 안 되면 Ctrl+Shift+V)
+ 4. 3줄 요약이 나오는지 확인
+
+[진행 중]
+ - 약 20분: Codex 가 "진행할까요?"에서 멈춤
+     > TASK.md 직접 읽고 확인
+     > Codex 가 준 질문을 DM 담당자에게 보내고, 답을 Codex 에 붙여넣기
+ - 60분: STATE 입력 > 첫 완주가 커밋됐는지 확인. 아니면 "범위 줄여"
+ - 커밋마다: "방금 변경을 3줄로 설명해"
+ - AI 가 틀린 걸 잡으면: "DECISIONS.md 의 Codex 를 믿지 않은 순간에 한 줄 적어"
+ - 같은 오류 2번: "고치지 말고 원인 가설 두 개와 확인 방법을 먼저 말해"
+ - 140분: $review-checklist > $verify
+ - 145분: 동결. 기능 추가 금지
+ - 165~170분: 제출하고 문제풀기 > 미리보기 > 제출물 확정하고 문제풀기
+
+[서술형 전 대기 시간]
+ - TASK.md 7번, DECISIONS.md 다시 읽기
+ - 답 3개 준비: 상충 조건 / 가장 위험한 실패 / Codex 를 믿지 않은 곳
+ - 답 틀: 사실 > 결정 > 근거(파일, 숫자) > 한계
+
+[막히면]
+ - git commit 오류(who you are):
+     git config user.name "flyingjoojak"
+     git config user.email "flyingjoojak@users.noreply.github.com"
+ - $스킬 이 안 되면: ".agents/skills/<이름>/SKILL.md 읽고 따라"
+ - 대화가 길어지면: "HANDOFF.md 써" > /new > "AGENTS.md, TASK.md, DECISIONS.md, HANDOFF.md 읽고 이어서 해"
+ - 이 안내 다시 보기: bash ~/codex-harness/setup.sh  (다시 실행해도 안전)
+====================================================
+GUIDE
