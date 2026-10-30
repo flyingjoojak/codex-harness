@@ -13,6 +13,8 @@ AGENTS.md                 작업 원칙 (Codex 가 자동으로 읽음)
 TASK.md                   과제 계약 템플릿
 DECISIONS.md              합의문, 결정 로그, Codex 를 믿지 않은 순간
 RUN.md                    당일 운영표 (180분)
+GUIDE.txt                 setup.sh 가 출력하는 당일 상세 안내 (cat 으로 다시 보기)
+setup.sh                  과제 폴더에서 실행. AGENTS.md 유무에 따라 설치하고 안내 출력
 docs/
   담당자_인터뷰.md         숨은 조건을 캐내는 질문 순서
   서술형_대비.md           AI 없이 쓰는 사후 문항 대비
