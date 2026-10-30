@@ -18,7 +18,7 @@
 4. 규칙 채우기: 완료 조건 하나 = 테스트 하나. 실패 확인 > 구현 > 통과 > 커밋.
 5. 동결: 마지막 20% 시간에는 기능을 추가하지 않는다. 문서 정리와 최종 검증만.
 
-스킬: `$dev-flow`(전체 흐름), `$systematic-debugging`(버그), `$review-checklist`(자체 리뷰), `$verify`(제출 전). 목록에 안 보이면 `.agents/skills/<이름>/SKILL.md` 또는 `~/codex-harness/.agents/skills/<이름>/SKILL.md` 를 직접 읽고 따른다. 하네스 원본은 과제 폴더 밖 `~/codex-harness` 에 있다. 도구와 문서는 그 경로로 실행하고 과제 폴더로 복사하지 않는다.
+스킬: `$dev-flow`(전체 흐름), `$systematic-debugging`(버그), `$review-checklist`(자체 리뷰), `$verify`(제출 전), `$web-ui`(웹 화면이 필요할 때). 목록에 안 보이면 `.agents/skills/<이름>/SKILL.md` 또는 `~/codex-harness/.agents/skills/<이름>/SKILL.md` 를 직접 읽고 따른다. 하네스 원본은 과제 폴더 밖 `~/codex-harness` 에 있다. 도구와 문서는 그 경로로 실행하고 과제 폴더로 복사하지 않는다.
 
 ## 증거 규칙
 - 상태는 네 단어로만 말한다: `PASS`(실행해서 통과 확인) / `FAIL` / `NOT_RUN`(실행 안 함) / `HUMAN_CHECK`(사람이 봐야 함).

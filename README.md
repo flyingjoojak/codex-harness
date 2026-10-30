@@ -10,6 +10,7 @@ AGENTS.md                 작업 원칙 (Codex 가 자동으로 읽음)
   systematic-debugging/   근본 원인부터 찾는 4단계
   review-checklist/       정확성, 무음 실패, 보안, 성능, 데이터, 단순성 자체 리뷰
   verify/                 제출 전 실행 증거 대조
+  web-ui/                 웹 화면: AI 티 빼고 업무 도구답게
 TASK.md                   과제 계약 템플릿
 DECISIONS.md              합의문, 결정 로그, Codex 를 믿지 않은 순간
 RUN.md                    당일 운영표 (180분)
