@@ -7,19 +7,36 @@
 - 09:40 전후로 오는 추가 안내 메일(자리 이탈, 식음료 규정)을 읽는다.
 
 ## 시작 직후 (5분)
-웹 터미널 붙여넣기는 `Ctrl+Shift+V` 일 수 있다. 하네스는 **과제 폴더 밖**에 받는다. 안에 받으면 하네스 파일이 제출물과 git log 에 섞인다.
+웹 터미널 붙여넣기는 `Ctrl+Shift+V` 일 수 있다. 하네스는 **과제 폴더 밖**에 받는다. 안에 통째로 받으면 하네스 파일이 제출물과 git log 에 섞인다.
+
+### 방법 A (기본): 지침과 스킬만 복사하고 git 에서 숨김
+과제 폴더에 AGENTS.md 가 없을 때. Codex 가 AGENTS.md 와 `$스킬` 을 자동으로 읽는다.
 ```
 git clone https://github.com/flyingjoojak/codex-harness.git ~/codex-harness
 cd <과제 폴더>
-cp -n ~/codex-harness/TASK.md ~/codex-harness/DECISIONS.md .
+[ -d .git ] || git init
+cp -rn ~/codex-harness/AGENTS.md ~/codex-harness/.agents ~/codex-harness/TASK.md ~/codex-harness/DECISIONS.md .
+printf 'AGENTS.md\n.agents/\n' >> .git/info/exclude
 python3 ~/codex-harness/scripts/preflight.py
-codex
+codex --add-dir ~/codex-harness
 ```
+- `/skills` 에 dev-flow, systematic-debugging, review-checklist, verify 가 보이는지 확인.
+- 첫 프롬프트:
+  > AGENTS.md 를 따른다. 적용한 지침을 3줄로 요약한 뒤 $dev-flow 1단계부터 시작해. 아직 코드는 쓰지 마.
+- TASK.md, DECISIONS.md 는 숨기지 않는다. 작업 기록이자 제출물이다.
+
+### 방법 B: 과제 폴더에 이미 AGENTS.md 가 있을 때
+과제 AGENTS.md 는 덮어쓰지 않는다. 하네스는 경로로 읽게 한다. 작업 폴더 밖 읽기가 막힐 수 있으니 `--add-dir` 를 붙인다.
+```
+cd <과제 폴더>
+cp -n ~/codex-harness/TASK.md ~/codex-harness/DECISIONS.md .
+codex --add-dir ~/codex-harness
+```
+- 첫 프롬프트:
+  > 과제 AGENTS.md 가 우선이고, 부딪히지 않는 범위에서 ~/codex-harness/AGENTS.md 도 따른다. 스킬은 필요할 때 ~/codex-harness/.agents/skills/<이름>/SKILL.md 를 읽어서 쓴다. 적용한 지침을 3줄로 요약한 뒤 dev-flow 1단계부터 시작해. 아직 코드는 쓰지 마.
+
+### 공통
 - `/status` 로 모델과 권한을 확인하고, `/model` 로 모델을 고른다(권장 6.1 Sol / 5.6 Terra / 6.0 Luna).
-- 첫 프롬프트(설정 변경 없이 경로로 읽히는 방식):
-  > ~/codex-harness/AGENTS.md 를 이 세션 지침으로 따른다. 스킬은 필요할 때 ~/codex-harness/.agents/skills/<이름>/SKILL.md 를 읽어서 쓴다. 적용한 지침을 3줄로 요약한 뒤 dev-flow 1단계부터 시작해. 아직 코드는 쓰지 마.
-- 과제 폴더에 이미 AGENTS.md 가 있으면 그것이 과제 지침이다. 덮어쓰지 않는다.
-- 선택: `$스킬` 로 부르고 싶으면 `mkdir -p ~/.agents/skills && cp -rn ~/codex-harness/.agents/skills/* ~/.agents/skills/` 후 Codex 를 다시 열고 `/skills` 로 확인. 사용자 폴더 스킬 경로가 이 버전에서 읽히는지는 사전 체험에서 확인하지 못했으면 쓰지 않는다.
 - 커밋이 권한 문제로 막히면 터미널에서 직접 `git commit` 한다.
 
 ## 시간 배분 (180분)

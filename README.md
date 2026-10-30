@@ -23,14 +23,17 @@ scripts/preflight.py      환경 점검, 제출 전 점검 (exit 0 / 1 / 2)
 ```
 
 ## 사용
-과제 폴더 밖에 받고, 과제 폴더에서 경로로 읽게 한다. 하네스 파일이 제출물과 git log 에 섞이지 않게 하기 위해서다.
+과제 폴더 밖에 받는다. 과제 폴더에는 AGENTS.md 와 `.agents/` 만 복사하고 `.git/info/exclude` 로 git 에서 숨긴다. 하네스 파일이 제출물과 git log 에 섞이지 않게 하기 위해서다.
 ```
 git clone https://github.com/flyingjoojak/codex-harness.git ~/codex-harness
 cd <과제 폴더>
-python3 ~/codex-harness/scripts/preflight.py
+cp -rn ~/codex-harness/AGENTS.md ~/codex-harness/.agents ~/codex-harness/TASK.md ~/codex-harness/DECISIONS.md .
+printf 'AGENTS.md\n.agents/\n' >> .git/info/exclude
 codex
 ```
-첫 프롬프트와 시간 배분은 `RUN.md`.
+과제에 이미 AGENTS.md 가 있을 때(`codex --add-dir ~/codex-harness`), 첫 프롬프트, 시간 배분은 `RUN.md`.
+
+Codex CLI 0.160.1 에서 확인한 것: 과제 폴더로 복사하면 스킬 4개와 AGENTS.md 가 로드되고 `git status` 에 나타나지 않는다. 폴더 밖 경로로 읽게 하면 `--add-dir` 없이는 샌드박스가 막았고, 붙이면 읽혔다.
 
 ## 점검 도구
 - `python3 tools/peek.py <파일|폴더>`: 행 수, 열마다 빈 값 비율, 숫자 범위, 상위 값. 열 개수가 어긋난 행 경고.
