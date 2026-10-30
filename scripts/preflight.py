@@ -50,11 +50,21 @@ def check_env():
     add("PASS", "도구", ", ".join(t for t in ("git", "rg", "node", "codex") if shutil.which(t)) or "없음")
 
 
+def count(pattern, text):
+    m = re.search(pattern, text)
+    return int(m.group(1)) if m else 0
+
+
 def check_tests():
-    code, out = run([sys.executable, "-m", "unittest", "discover", "-v"])
-    m = re.search(r"Ran (\d+) test", out)
-    ran = int(m.group(1)) if m else 0
-    skipped = sum(int(n) for n in re.findall(r"skipped=(\d+)", out))
+    if importlib.util.find_spec("pytest"):
+        # pytest 는 unittest 형식 테스트도 함께 실행한다
+        code, out = run([sys.executable, "-m", "pytest", "-q", "-rN"])
+        skipped = count(r"(\d+) skipped", out)
+        ran = count(r"(\d+) passed", out) + count(r"(\d+) failed", out) + count(r"(\d+) error", out) + skipped
+    else:
+        code, out = run([sys.executable, "-m", "unittest", "discover", "-v"])
+        ran = count(r"Ran (\d+) test", out)
+        skipped = count(r"skipped=(\d+)", out)
     if ran == 0:
         add("FAIL", "테스트", "실행된 테스트 0개 (test_*.py 가 없거나 발견 안 됨)")
     elif ran == skipped:
@@ -84,7 +94,7 @@ def check_leftovers():
         add("PASS", "남은 것 검사", f"파일 {scanned}개")
     code, out = run(["git", "status", "--porcelain"], 30)
     if code == 0:
-        dirty = [l for l in out.splitlines() if "__pycache__" not in l and not l.endswith(".pyc")]
+        dirty = [l for l in out.splitlines() if not re.search(r"__pycache__|.pytest_cache|.pyc$", l)]
         add("FAIL" if dirty else "PASS", "git", f"미커밋 {len(dirty)}개" if dirty else "깨끗함")
 
 

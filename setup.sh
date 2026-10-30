@@ -12,6 +12,11 @@ fi
 
 git rev-parse --git-dir >/dev/null 2>&1 || { git init -q; echo "git 저장소가 없어 git init 했습니다."; }
 cp -n "$KIT/TASK.md" "$KIT/DECISIONS.md" . 2>/dev/null || true
+EXCLUDE="$(git rev-parse --git-path info/exclude)"
+mkdir -p "$(dirname "$EXCLUDE")"
+grep -qx '.pytest_cache/' "$EXCLUDE" 2>/dev/null || printf '__pycache__/
+.pytest_cache/
+' >> "$EXCLUDE"
 
 if [ -e AGENTS.md ]; then
   echo
@@ -26,8 +31,6 @@ else
   else
     cp -r "$KIT/.agents" .
   fi
-  EXCLUDE="$(git rev-parse --git-path info/exclude)"
-  mkdir -p "$(dirname "$EXCLUDE")"
   grep -qx 'AGENTS.md' "$EXCLUDE" 2>/dev/null || printf 'AGENTS.md\n.agents/\n' >> "$EXCLUDE"
   echo
   echo "[방법 A] AGENTS.md 와 스킬을 복사했고 git 에서 숨겼습니다."

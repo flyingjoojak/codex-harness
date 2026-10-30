@@ -37,7 +37,7 @@ Codex CLI 0.160.1 에서 확인한 것: 과제 폴더로 복사하면 스킬 4�
 ## 점검 도구
 - `python3 tools/peek.py <파일|폴더>`: 행 수, 열마다 빈 값 비율, 숫자 범위, 상위 값. 열 개수가 어긋난 행 경고.
 - `python3 scripts/preflight.py`: Python 버전, 외부 패키지 유무, 도구.
-- `python3 scripts/preflight.py submit`: 위 + unittest 실행(0개 실행, 전부 skip 은 FAIL) + 비밀값, README TODO, git 미커밋.
+- `python3 scripts/preflight.py submit`: 위 + 테스트 실행(pytest 가 있으면 pytest, 없으면 unittest. 0개 실행, 전부 skip 은 FAIL) + 비밀값, README TODO, git 미커밋.
 - 종료 코드 0 문제 없음 / 1 문제 있음 / 2 확인한 것이 없음.
 - 둘 다 표준 라이브러리만 쓰고, 임시 폴더의 표본 CSV/JSON 과 빈 폴더로 실행해 확인했다.
 
