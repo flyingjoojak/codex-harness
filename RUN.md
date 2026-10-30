@@ -9,29 +9,23 @@
 ## 시작 직후 (5분)
 웹 터미널 붙여넣기는 `Ctrl+Shift+V` 일 수 있다. 하네스는 **과제 폴더 밖**에 받는다. 안에 통째로 받으면 하네스 파일이 제출물과 git log 에 섞인다.
 
-### 방법 A (기본): 지침과 스킬만 복사하고 git 에서 숨김
-과제 폴더에 AGENTS.md 가 없을 때. Codex 가 AGENTS.md 와 `$스킬` 을 자동으로 읽는다.
+### 명령 세 줄 (AGENTS.md 가 있든 없든 같다)
 ```
 git clone https://github.com/flyingjoojak/codex-harness.git ~/codex-harness
 cd <과제 폴더>
-[ -d .git ] || git init
-cp -rn ~/codex-harness/AGENTS.md ~/codex-harness/.agents ~/codex-harness/TASK.md ~/codex-harness/DECISIONS.md .
-printf 'AGENTS.md\n.agents/\n' >> .git/info/exclude
-python3 ~/codex-harness/scripts/preflight.py
-codex --add-dir ~/codex-harness
+bash ~/codex-harness/setup.sh
 ```
+`setup.sh` 가 과제 AGENTS.md 유무를 보고 아래 A 또는 B 를 해 주고, 다음 명령과 첫 프롬프트를 출력한다. 기존 파일은 덮어쓰지 않는다. 그다음 `codex --add-dir ~/codex-harness`.
+
+### 방법 A: 과제 폴더에 AGENTS.md 가 없을 때
+setup.sh 가 AGENTS.md 와 `.agents/` 를 복사하고 `.git/info/exclude` 로 git 에서 숨긴다. Codex 가 AGENTS.md 와 `$스킬` 을 자동으로 읽는다.
 - `/skills` 에 dev-flow, systematic-debugging, review-checklist, verify 가 보이는지 확인.
 - 첫 프롬프트:
   > AGENTS.md 를 따른다. 적용한 지침을 3줄로 요약한 뒤 $dev-flow 1단계부터 시작해. 아직 코드는 쓰지 마.
 - TASK.md, DECISIONS.md 는 숨기지 않는다. 작업 기록이자 제출물이다.
 
 ### 방법 B: 과제 폴더에 이미 AGENTS.md 가 있을 때
-과제 AGENTS.md 는 덮어쓰지 않는다. 하네스는 경로로 읽게 한다. 작업 폴더 밖 읽기가 막힐 수 있으니 `--add-dir` 를 붙인다.
-```
-cd <과제 폴더>
-cp -n ~/codex-harness/TASK.md ~/codex-harness/DECISIONS.md .
-codex --add-dir ~/codex-harness
-```
+setup.sh 는 과제 AGENTS.md 를 건드리지 않고 TASK.md, DECISIONS.md 만 복사한다. 하네스는 경로로 읽게 한다. 작업 폴더 밖 읽기가 막힐 수 있어 `--add-dir` 를 붙인다.
 - 첫 프롬프트:
   > 과제 AGENTS.md 가 우선이고, 부딪히지 않는 범위에서 ~/codex-harness/AGENTS.md 도 따른다. 스킬은 필요할 때 ~/codex-harness/.agents/skills/<이름>/SKILL.md 를 읽어서 쓴다. 적용한 지침을 3줄로 요약한 뒤 dev-flow 1단계부터 시작해. 아직 코드는 쓰지 마.
 

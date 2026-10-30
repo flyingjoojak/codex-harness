@@ -27,11 +27,10 @@ scripts/preflight.py      환경 점검, 제출 전 점검 (exit 0 / 1 / 2)
 ```
 git clone https://github.com/flyingjoojak/codex-harness.git ~/codex-harness
 cd <과제 폴더>
-cp -rn ~/codex-harness/AGENTS.md ~/codex-harness/.agents ~/codex-harness/TASK.md ~/codex-harness/DECISIONS.md .
-printf 'AGENTS.md\n.agents/\n' >> .git/info/exclude
+bash ~/codex-harness/setup.sh
 codex --add-dir ~/codex-harness
 ```
-과제에 이미 AGENTS.md 가 있을 때(`codex --add-dir ~/codex-harness`), 첫 프롬프트, 시간 배분은 `RUN.md`.
+`setup.sh` 는 과제에 AGENTS.md 가 없으면 위처럼 복사하고 숨기며, 있으면 건드리지 않고 경로로 읽는 첫 프롬프트를 출력한다. 시간 배분은 `RUN.md`.
 
 Codex CLI 0.160.1 에서 확인한 것: 과제 폴더로 복사하면 스킬 4개와 AGENTS.md 가 로드되고 `git status` 에 나타나지 않는다. 폴더 밖 경로로 읽게 하면 `--add-dir` 없이는 샌드박스가 막았고, 붙이면 읽혔다.
 
