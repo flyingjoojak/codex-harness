@@ -11,6 +11,8 @@ AGENTS.md                 작업 원칙 (Codex 가 자동으로 읽음)
   review-checklist/       정확성, 무음 실패, 보안, 성능, 데이터, 단순성 자체 리뷰
   verify/                 제출 전 실행 증거 대조
   web-ui/                 웹 화면: AI 티 빼고 업무 도구답게
+  llm-feature/            결과물에서 LLM 호출: 규칙 먼저, 대체 경로, 출력 검증, 네트워크 없는 테스트
+  data-judge/             표 데이터 판정: 기준표 > 규칙 코드 > 행마다 사유 > 다른 방법으로 대조
 TASK.md                   과제 계약 템플릿
 DECISIONS.md              합의문, 결정 로그, Codex 를 믿지 않은 순간
 RUN.md                    당일 운영표 (180분)
