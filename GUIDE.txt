@@ -169,7 +169,12 @@ AI 가 틀린 것을 잡았을 때:
 - 진행 상황이 궁금하면: "STATE"
 - 데이터 구조 빨리 보기: python3 ~/codex-harness/tools/peek.py <파일>
 - 서버가 필요하면 0.0.0.0 으로 띄우고, Codex 와 다른 터미널 탭에서 실행. 확인은 내장 브라우저.
-- 엑셀(.xlsx)이 나오면: openpyxl 이 없다. CSV 가 같이 있는지 먼저 보고, 없으면 담당자에게 묻는다.
+- 패키지가 없을 때(예: 엑셀 .xlsx 를 읽을 openpyxl): 한 번 설치를 시도한다.
+     python3 -m pip install --user openpyxl
+     (externally-managed-environment 오류면)
+     python3 -m pip install --user --break-system-packages openpyxl
+   - 되면: requirements.txt 와 README 실행 방법에 적고 DECISIONS.md 에 한 줄.
+   - 둘 다 안 되면(인터넷 없음 등): 같은 CSV 가 있는지 > 담당자에게 CSV 요청 > 표준 라이브러리(zipfile)로 읽기.
 - 플랫폼 오류, 감독 앱 오류: 시험 화면의 문의 버튼으로 시각과 증상 접수.
 - MCP, 플러그인, 서브에이전트는 켜지 않는다.
 ################################################################

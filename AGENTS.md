@@ -30,8 +30,13 @@
 
 ## 코드 원칙
 - 요구사항에 없는 기능은 만들지 않는다. 필요해 보이면 `생략: X / 필요해지는 조건: Y` 한 줄만 남긴다.
-- 시험 환경(사전 체험 확인): Python 3.11, pandas, numpy, pytest, requests 있음. openpyxl 없음, `rg` 없음. 이 밖의 패키지는 설치에 시간을 쓰지 않는다.
-- 표 데이터는 pandas 를 써도 된다. 테스트는 pytest(`python3 -m pytest -q`). .xlsx 는 pandas 로 바로 안 열리므로 CSV 가 함께 있는지 먼저 보고, 없으면 담당자에게 묻거나 사람에게 알린다.
+- 시험 환경(사전 체험 확인): Python 3.11, pandas, numpy, pytest, requests 있음. openpyxl 없음, `rg` 없음.
+- 표 데이터는 pandas 를 써도 된다. 테스트는 pytest(`python3 -m pytest -q`).
+- 필요한 패키지가 없으면 설치를 한 번 시도한다(아래 순서, 각 60초 이내). 둘 다 실패하면 설치를 포기하고 대체 경로로 간다. 같은 설치를 반복 시도하지 않는다.
+  1. `python3 -m pip install --user <패키지>`
+  2. `externally-managed-environment` 오류면: `python3 -m pip install --user --break-system-packages <패키지>`
+- 설치에 성공하면 `requirements.txt` 에 적고, README 실행 방법에 설치 명령을 넣고, `DECISIONS.md` 에 이유를 한 줄 남긴다.
+- .xlsx 인데 openpyxl 설치가 안 되면: 같은 내용의 CSV 가 있는지 보고, 없으면 담당자에게 CSV 를 받을 수 있는지 묻는다. 그래도 안 되면 표준 라이브러리 `zipfile` + `xml.etree` 로 시트를 읽는다(.xlsx 는 XML 묶음).
 - 경계값은 "같으면 통과인가"를 주석으로 확정한다.
 - 입력 자료구조를 직접 수정하지 않는다. 에러를 삼키지 않는다.
 - 버그는 증상이 아니라 근본 원인에서 고친다. 한 번에 하나만 바꾼다.
