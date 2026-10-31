@@ -11,6 +11,10 @@ if [ "$(pwd)" = "$KIT" ]; then
 fi
 
 git rev-parse --git-dir >/dev/null 2>&1 || { git init -q; echo "git 저장소가 없어 git init 했습니다."; }
+# 커밋 작성자가 비어 있으면 이 과제 폴더에만 설정한다(전역 설정은 건드리지 않음)
+GIT_NAME_SET=""
+if [ -z "$(git config user.name || true)" ]; then git config user.name "flyingjoojak"; GIT_NAME_SET=1; fi
+if [ -z "$(git config user.email || true)" ]; then git config user.email "flyingjoojak@users.noreply.github.com"; GIT_NAME_SET=1; fi
 cp -n "$KIT/TASK.md" "$KIT/DECISIONS.md" . 2>/dev/null || true
 EXCLUDE="$(git rev-parse --git-path info/exclude)"
 mkdir -p "$(dirname "$EXCLUDE")"
@@ -44,4 +48,5 @@ else
   echo "  AGENTS.md 를 따른다. 적용한 지침을 3줄로 요약한 뒤 \$dev-flow 1단계부터 시작해. 아직 코드는 쓰지 마."
 fi
 echo
+if [ -n "$GIT_NAME_SET" ]; then echo "git 작성자가 비어 있어 이 폴더에만 설정했습니다: $(git config user.name) <$(git config user.email)>"; else echo "git 작성자: $(git config user.name) <$(git config user.email)>"; fi
 echo "위로 스크롤하면 오늘 할 일 상세 안내가 있다. 다시 보기: cat ~/codex-harness/GUIDE.txt"

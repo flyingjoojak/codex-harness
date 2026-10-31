@@ -19,6 +19,13 @@ Codex 에게 말할 문장은 "..." 안의 내용을 그대로 붙여넣으면 �
    - 3줄 요약에 "증거 규칙", "한국어로 짧게", "요구사항에 없는 기능 금지" 같은 내용이 나오면 정상.
    - 요약이 엉뚱하면: "AGENTS.md 를 다시 읽고 요약해" 한 번 더.
 5) 과제 화면의 README 를 나도 직접 한 번 읽는다(5분). 제출 형식과 금지 사항에 줄을 긋는다.
+6) git 작성자 확인: setup.sh 출력 맨 아래 "git 작성자:" 줄을 본다.
+   - 비어 있었으면 setup.sh 가 이 폴더에만 자동 설정했다. 따로 할 일 없음.
+   - 직접 확인/설정하려면(과제 폴더에서):
+     git config user.name
+     git config user.email
+     git config user.name "flyingjoojak"
+     git config user.email "flyingjoojak@users.noreply.github.com"
 
 ================================================================
 [5~25분] 계약 (코드 금지 구간)
@@ -150,7 +157,7 @@ AI 가 틀린 것을 잡았을 때:
 ================================================================
 [막히면]
 ================================================================
-- git commit 오류(Please tell me who you are):
+- git commit 오류(Please tell me who you are). setup.sh 가 보통 미리 막지만, 나면 과제 폴더에서:
      git config user.name "flyingjoojak"
      git config user.email "flyingjoojak@users.noreply.github.com"
 - $스킬 이 안 먹으면: ".agents/skills/<이름>/SKILL.md 를 읽고 따라"
