@@ -49,7 +49,8 @@ AGENTS.md                 작업 원칙 (Codex 가 자동으로 읽음)
   llm-feature/            결과물에서 LLM 호출: 규칙 먼저, 대체 경로, 출력 검증, 네트워크 없는 테스트
   data-judge/             표 데이터 판정: 기준표 > 규칙 코드 > 행마다 사유 > 다른 방법으로 대조
 TASK.md                   과제 계약 템플릿
-DECISIONS.md              합의문, 결정 로그, Codex 를 믿지 않은 순간
+DECISIONS.md              합의문, 결정 로그, Codex 를 믿지 않은 순간, 디버깅 기록
+UNDERSTANDING.md          태스크마다 쌓는 이해 문서(서술형 대비). setup.sh 가 과제 폴더에 복사
 RUN.md                    당일 운영표 (180분)
 GUIDE.txt                 setup.sh 가 출력하는 당일 상세 안내 (cat 으로 다시 보기)
 setup.sh                  과제 폴더에서 실행. AGENTS.md 유무에 따라 설치하고 안내 출력
@@ -62,6 +63,8 @@ docs/
 tools/peek.py             CSV, JSON 구조를 빠르게 훑기
 tools/route_ref.py        노선 생성 참고 구현(직행 기준선 > 절약 병합 > 2-opt, 독립 검사기)
 scripts/preflight.py      환경 점검, 제출 전 점검 (exit 0 / 1 / 2)
+templates/app/            뼈대: 표준 라이브러리 웹 서버, Dockerfile, 테스트, AI_COLLABORATION.md (해법 코드 없음)
+mock/                     90분 모의 시험: 과제, 가짜 데이터 생성기, 담당자 답변, 시간 기록표
 ```
 
 ## 사용
@@ -73,6 +76,8 @@ bash ~/codex-harness/setup.sh
 codex --add-dir ~/codex-harness
 ```
 `setup.sh` 는 과제에 AGENTS.md 가 없으면 위처럼 복사하고 숨기며, 있으면 건드리지 않고 경로로 읽는 첫 프롬프트를 출력한다. 시간 배분은 `RUN.md`.
+
+시험 전 연습: `mock/README.md` 의 90분 모의 시험으로 구간별 시간을 재 본다.
 
 Codex CLI 0.160.1 에서 확인한 것: 과제 폴더로 복사하면 스킬 7개와 AGENTS.md 가 로드되고 `git status` 에 나타나지 않는다. 폴더 밖 경로로 읽게 하면 `--add-dir` 없이는 샌드박스가 막았고, 붙이면 읽혔다.
 

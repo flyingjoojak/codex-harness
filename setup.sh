@@ -15,7 +15,7 @@ git rev-parse --git-dir >/dev/null 2>&1 || { git init -q; echo "git 저장소가
 GIT_NAME_SET=""
 if [ -z "$(git config user.name || true)" ]; then git config user.name "flyingjoojak"; GIT_NAME_SET=1; fi
 if [ -z "$(git config user.email || true)" ]; then git config user.email "flyingjoojak@users.noreply.github.com"; GIT_NAME_SET=1; fi
-cp -n "$KIT/TASK.md" "$KIT/DECISIONS.md" . 2>/dev/null || true
+cp -n "$KIT/TASK.md" "$KIT/DECISIONS.md" "$KIT/UNDERSTANDING.md" . 2>/dev/null || true
 EXCLUDE="$(git rev-parse --git-path info/exclude)"
 mkdir -p "$(dirname "$EXCLUDE")"
 grep -qx '.pytest_cache/' "$EXCLUDE" 2>/dev/null || printf '__pycache__/
