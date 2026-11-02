@@ -58,7 +58,9 @@ docs/
   서술형_대비.md           AI 없이 쓰는 사후 문항 대비
   프롬프트.md              바로 쓰는 지시문
   참고자료.md              참고한 공개 저장소와 신뢰도
+  노선_알고리즘_대비.md    1회차 유형(통근 노선 생성) 대비: 질문, 알고리즘, 검사기, Docker, 서술형
 tools/peek.py             CSV, JSON 구조를 빠르게 훑기
+tools/route_ref.py        노선 생성 참고 구현(직행 기준선 > 절약 병합 > 2-opt, 독립 검사기)
 scripts/preflight.py      환경 점검, 제출 전 점검 (exit 0 / 1 / 2)
 ```
 
