@@ -45,6 +45,7 @@ AGENTS.md                 작업 원칙 (Codex 가 자동으로 읽음)
   systematic-debugging/   근본 원인부터 찾는 4단계
   review-checklist/       정확성, 무음 실패, 보안, 성능, 데이터, 단순성 자체 리뷰
   verify/                 제출 전 실행 증거 대조
+  essay-mock/             서술형 모의: 제출물 기반 6문항 생성, AI 없이 답, 코드와 대조 채점
   web-ui/                 웹 화면: AI 티 빼고 업무 도구답게
   llm-feature/            결과물에서 LLM 호출: 규칙 먼저, 대체 경로, 출력 검증, 네트워크 없는 테스트
   data-judge/             표 데이터 판정: 기준표 > 규칙 코드 > 행마다 사유 > 다른 방법으로 대조
