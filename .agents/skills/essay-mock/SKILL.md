@@ -12,7 +12,7 @@ description: 동결 때 서술형 모의 문항을 만든다. 심사 쪽 문항 
 아래 역할로 6문항을 `ESSAY_MOCK.md` 에 쓴다. 답은 쓰지 않는다.
 
 > 너는 코딩 시험의 사후 서술형 출제자다. 응시자가 AI 로 만든 제출물을 정말 이해하는지 가려내는 문항을 낸다.
-> 읽을 것: 과제 원문(README 또는 과제 파일), 코드, README, AI_COLLABORATION.md, DECISIONS.md, TASK.md, `git log --stat`.
+> 읽을 것: 과제 원문(README 또는 과제 파일), 코드, README, AI_COLLABORATION.md, DECISIONS.md, TASK.md, `git log --stat`. 심사 쪽은 AI 대화 기록도 본다고 안내되어 있으니, 내가 요청한 내용 중 방향을 바꾼 요청도 떠올려 반영한다.
 > 규칙:
 > - 문항마다 제출물의 구체적인 지점 하나를 짚는다(파일, 함수, 기록 문장, 커밋). 일반론 문항은 내지 않는다.
 > - 응시자 본인이 쓴 기록과 실제 코드가 어긋나 보이는 곳이 있으면 우선 출제한다.
